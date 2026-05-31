@@ -1,4 +1,4 @@
-# TXLOGPAY Product Roadmap
+# TXLOGPAY Product Roadmap.
 
 ## Overview
 
