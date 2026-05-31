@@ -1,423 +1,154 @@
-# TXLOGPAY Architecture
+# MVP Scope and Production Separation
 
-## Overview
+## Architectural Positioning
 
-TXLOGPAY is a programmable trade finance infrastructure designed to orchestrate international payment operations through operational event triggers.
+The current TXLOGPAY implementation represents a functional MVP architecture focused on demonstrating operational trade finance orchestration and programmable settlement concepts.
 
-The platform combines:
+The current infrastructure was intentionally designed to prioritize:
 
+* operational workflow demonstration
+* programmable event orchestration
+* settlement trigger simulation
+* auditability concepts
+* financial guarantee flows
+* invisible settlement infrastructure
+
+while maintaining implementation simplicity appropriate for a hackathon and early-stage infrastructure prototype.
+
+---
+
+# Current MVP Architecture
+
+The current implementation includes both production-oriented components and simulation-oriented infrastructure layers.
+
+Implemented production-oriented components include:
+
+* operational frontend infrastructure
 * operational workflow orchestration
-* financial guarantee management
-* programmable settlement infrastructure
+* authentication flows
+* operational timeline engine
+* multi-currency normalization
+* payment proof management
 * operational monitoring
-* event-driven payment release
-* invisible distributed ledger infrastructure
-
-The architecture was intentionally designed to abstract blockchain complexity from end users while preserving operational auditability and programmable settlement capabilities.
-
----
-
-# Architectural Principles
-
-## Operational First
-
-TXLOGPAY is fundamentally designed around operational workflows rather than blockchain mechanics.
-
-The user experience is centered on:
-
-* operations
-* guarantees
-* shipment monitoring
-* payment status
-* operational events
-* compliance flows
-
-Users never interact directly with:
-
-* wallets
-* tokens
-* blockchain terminology
-* cryptographic infrastructure
+* protected operational storage
+* deployment infrastructure
+* Stellar Testnet settlement execution
 
 ---
 
-## Invisible Settlement Infrastructure
+## Simulated Infrastructure Components
 
-Distributed ledger infrastructure operates as a backend settlement layer.
+The current MVP intentionally simulates specific institutional integrations that would normally depend on third-party infrastructure providers in production environments.
 
-Blockchain infrastructure is used exclusively for:
+Current simulated components include:
 
-* settlement execution
-* transaction traceability
-* immutable audit records
-* programmable financial orchestration
-
-This architectural decision allows:
-
-* enterprise-friendly UX
-* operational simplicity
-* reduced onboarding friction
-* compatibility with traditional trade workflows
+| Component               | Current MVP Model                   | Production Vision                    |
+| ----------------------- | ----------------------------------- | ------------------------------------ |
+| Customs Integration     | Internal operational simulator      | Real customs and logistics APIs      |
+| Escrow Infrastructure   | Internal operational logic          | Institutional escrow providers       |
+| Off-Ramp Infrastructure | Simulated financial release         | Banking and FX partners              |
+| Settlement Confirmation | Simulated operational completion    | Real banking settlement confirmation |
+| Compliance Validation   | Internal workflow simulation        | External compliance providers        |
+| FX Infrastructure       | Internal conversion reference model | Institutional FX providers           |
+| Operational Events      | Frontend simulation engine          | Real operational integrations        |
 
 ---
 
-## Event-Driven Financial Release
+# Stellar Testnet Usage
 
-The platform uses operational events as programmable triggers.
+The current infrastructure uses Stellar Testnet exclusively for:
 
-Financial settlement execution may depend on:
-
-* exporter confirmation
-* shipment status
-* customs milestones
-* operational validation
-* compliance events
-
-This enables programmable settlement orchestration tightly coupled with international trade operations.
-
----
-
-# High-Level Architecture
-
-```text id="rqm9bd"
-┌──────────────────────────────────────────┐
-│              Frontend Layer             │
-│      React + TypeScript Application     │
-└──────────────────────────────────────────┘
-                    │
-                    ▼
-┌──────────────────────────────────────────┐
-│          Operational Orchestration      │
-│       Timeline + Workflow Engine        │
-└──────────────────────────────────────────┘
-                    │
-        ┌───────────┴───────────┐
-        ▼                       ▼
-┌───────────────┐     ┌──────────────────┐
-│   Supabase    │     │ Settlement Layer │
-│ Operational DB│     │ Stellar Testnet  │
-└───────────────┘     └──────────────────┘
-        │                       │
-        ▼                       ▼
-┌──────────────────────────────────────────┐
-│      Auditability and Monitoring         │
-└──────────────────────────────────────────┘
-```
-
----
-
-# Frontend Architecture
-
-## Technology Stack
-
-| Layer            | Technology      |
-| ---------------- | --------------- |
-| Framework        | React           |
-| Language         | TypeScript      |
-| Routing          | TanStack Router |
-| Styling          | TailwindCSS     |
-| State Management | Zustand         |
-| Deployment       | Cloudflare      |
-| Build Tooling    | Vite            |
-| Authentication   | Supabase Auth   |
-
----
-
-## Frontend Objectives
-
-The frontend was designed to simulate an enterprise-grade operational treasury platform.
-
-Primary objectives:
-
-* operational clarity
-* low cognitive friction
-* event visibility
-* financial transparency
-* operational timeline traceability
-
-The interface intentionally avoids:
-
-* crypto terminology
-* blockchain references
-* wallet-centric flows
-
----
-
-## Main Frontend Modules
-
-### Dashboard
-
-Provides:
-
-* operational metrics
-* protected payment volume
-* operation summaries
-* operational statistics
-* payment overview
-
----
-
-### Operations Module
-
-Responsible for:
-
-* operation creation
-* operational monitoring
-* timeline visualization
-* guarantee tracking
-* operational event orchestration
-
----
-
-### Payment Workflow
-
-Responsible for:
-
-* guarantee submission
-* payment validation
-* settlement monitoring
-* financial release lifecycle
-
----
-
-### Operational Timeline Engine
-
-The timeline engine acts as the central orchestration layer for operational events.
-
-Current operational stages include:
-
-* operation creation
-* guarantee pending
-* payment validation
-* operational monitoring
-* shipment monitoring
-* customs simulation
-* settlement release
-* operation completion
-
----
-
-# Backend Architecture
-
-## Supabase Infrastructure
-
-Supabase operates as:
-
-* operational database
-* authentication provider
-* file storage provider
-* realtime synchronization layer
-
----
-
-## Main Database Entities
-
-### operations
-
-Core operational entity containing:
-
-* importer data
-* exporter data
-* financial information
-* operational status
-* settlement configuration
-* guarantee metadata
-
----
-
-### payment_proofs
-
-Stores:
-
-* uploaded guarantee receipts
-* operational payment evidence
-* validation metadata
-
----
-
-### operational_events
-
-Tracks:
-
-* operational transitions
-* workflow changes
-* timeline history
-* monitoring events
-
----
-
-# Operational Simulation Layer
-
-## Siscomex Simulation Engine
-
-The platform currently includes an operational simulation layer designed to emulate customs workflow progression.
-
-Current simulation stages:
-
-| Status            | Description                  |
-| ----------------- | ---------------------------- |
-| CREATED           | Operation created            |
-| EXPORTER_ACCEPTED | Exporter confirmed operation |
-| CARGO_SHIPPED     | Cargo shipped                |
-| IN_TRANSIT        | International transportation |
-| CUSTOMS_ARRIVAL   | Customs arrival              |
-| CUSTOMS_RELEASED  | Customs clearance completed  |
-
-This simulation layer acts as the operational trigger source for programmable settlement release.
-
----
-
-# Settlement Infrastructure
-
-## Stellar Testnet Integration
-
-TXLOGPAY currently integrates with Stellar Testnet infrastructure to simulate programmable international settlement execution.
-
-The current implementation demonstrates:
-
-* wallet creation
-* testnet funding
-* transaction submission
-* transaction confirmation
-* settlement orchestration
-
----
-
-## Settlement Philosophy
-
-Settlement infrastructure operates as:
-
-* backend financial rail
-* programmable execution layer
-* audit infrastructure
-* operational settlement engine
-
-The platform intentionally abstracts blockchain mechanics from the end-user experience.
-
----
-
-# Multi-Currency Infrastructure
-
-The platform supports multi-currency operations.
-
-Current architecture includes:
-
-* operational currency normalization
-* reference conversion logic
-* unified protected payment metrics
-* FX reference calculations
-
-Protected payment aggregation uses operational normalization rules to prevent cross-currency aggregation inconsistencies.
-
----
-
-# Security Architecture
-
-## Authentication
-
-Authentication is managed through Supabase Auth infrastructure with:
-
-* session validation
-* protected routes
-* user isolation
-* secure authentication flows
-
----
-
-## Operational Isolation
-
-Operations are isolated per authenticated account.
-
-Security policies are enforced through:
-
-* Row Level Security (RLS)
-* authenticated storage access
-* ownership validation
-* protected operational queries
-
----
-
-## File Security
-
-Uploaded operational documents are protected through:
-
-* authenticated upload flows
-* isolated storage buckets
-* ownership-based retrieval policies
-
----
-
-# Deployment Infrastructure
-
-## Cloudflare Deployment
-
-The current infrastructure uses Cloudflare deployment pipelines for:
-
-* frontend hosting
-* edge delivery
-* deployment automation
-* operational scalability
-
----
-
-# Current MVP Scope
-
-The current MVP demonstrates:
-
-* operational workflow orchestration
-* financial guarantee lifecycle
-* operational monitoring
-* programmable operational triggers
+* settlement demonstration
+* programmable payment orchestration
+* transaction auditability
 * settlement simulation
-* Stellar Testnet integration
-* operational event automation
-* multi-currency operational flows
+* infrastructure validation
+
+The current implementation intentionally avoids:
+
+* production-grade liquidity orchestration
+* institutional custody
+* regulated financial execution
+* real off-ramp integrations
+
+The purpose of the current settlement layer is to validate:
+
+* operational settlement logic
+* programmable release concepts
+* event-driven payment orchestration
+* infrastructure feasibility
 
 ---
 
-# Future Architecture Evolution
+# Production Infrastructure Vision
 
-Future infrastructure evolution may include:
+The long-term TXLOGPAY infrastructure vision includes integration with institutional-grade financial and operational providers.
 
-* real settlement anchors
-* automated off-ramp orchestration
-* institutional treasury integration
-* operational banking connectors
-* programmable compliance automation
-* event-driven escrow infrastructure
-* real customs integrations
-* multi-rail settlement orchestration
+Planned production infrastructure may include:
+
+* real anchor integrations
+* banking APIs
+* institutional custody layers
+* automated FX providers
+* regulated off-ramp providers
+* compliance engines
+* customs and logistics APIs
+* programmable escrow infrastructure
+* operational treasury orchestration
 
 ---
 
-# Strategic Positioning
+# Infrastructure Evolution Strategy
 
-TXLOGPAY should not be interpreted as:
+TXLOGPAY architecture was intentionally designed to support progressive infrastructure replacement.
 
-* a crypto application
-* a wallet infrastructure
-* a DeFi protocol
-* a speculative blockchain platform
+Simulation-oriented components were implemented with modular replacement capability, allowing future migration toward:
 
-TXLOGPAY is positioned as:
+* real financial rails
+* institutional compliance infrastructure
+* production-grade settlement providers
+* enterprise operational integrations
 
-* programmable trade finance infrastructure
-* operational treasury infrastructure
-* event-driven settlement platform
-* programmable international payment infrastructure
+without requiring frontend redesign or workflow restructuring.
+
+---
+
+# Architectural Philosophy
+
+The platform intentionally separates:
+
+* operational experience
+* financial orchestration
+* settlement infrastructure
+
+This separation allows:
+
+* invisible blockchain integration
+* enterprise-compatible UX
+* operational simplicity
+* infrastructure modularity
+* settlement abstraction
+
+The end-user experience remains operationally focused regardless of the underlying settlement infrastructure implementation.
 
 ---
 
 # Conclusion
 
-TXLOGPAY architecture was designed to demonstrate how operational events can become programmable financial triggers without exposing blockchain complexity to end users.
+The current TXLOGPAY MVP should be interpreted as:
 
-The infrastructure combines:
+* a functional operational infrastructure prototype
+* a programmable trade finance demonstration
+* a settlement orchestration proof-of-concept
+* a modular infrastructure foundation
 
-* operational clarity
-* financial programmability
-* auditability
-* event orchestration
-* invisible settlement infrastructure
+rather than a fully deployed institutional financial infrastructure.
 
-into a unified operational trade finance platform.
+The architecture was intentionally designed to validate:
+
+* operational event-driven settlement
+* programmable financial orchestration
+* invisible distributed settlement infrastructure
+* trade finance workflow automation
+
+while preserving long-term scalability toward institutional-grade financial infrastructure.
