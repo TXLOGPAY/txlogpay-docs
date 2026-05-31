@@ -1,5 +1,3 @@
-# INFRASTRUCTURE_VISION.md
-
 # TXLOGPAY Infrastructure Vision
 
 ## Overview
